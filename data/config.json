@@ -1,10 +1,11 @@
 {
+  "adminRoleId": "1548394825009864734, 1548394487158538251",
+  "botName": "Ecco Admin",
   "warningLimit": 3,
   "muteMinutes": 10,
   "antiLink": true,
   "antiSpam": true,
   "autoMod": true,
-  "testMode": false,
   "antiBot": false,
   "antiSuspicious": true,
   "suspiciousAccountDays": 3,
@@ -14,7 +15,8 @@
   "protectedRoleIds": [],
   "whitelistChannelIds": [],
   "whitelistRoleIds": [],
-  "badWords": [
+ "badWords": [],
+"bullyingWords": [
   "seu gordo",
   "sua gorda",
   "gordo inútil",
@@ -49,5 +51,6 @@
   "antiSpamMaxMessages": 6,
   "antiSpamWindowMs": 5000,
   "antiRaidJoins": 8,
-  "antiRaidWindowMs": 10000
+  "antiRaidWindowMs": 10000,
+  "testMode": false
 }

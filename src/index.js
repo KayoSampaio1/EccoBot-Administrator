@@ -82,6 +82,16 @@ client.on("interactionCreate",async i=>{
   if(i.commandName==="logs"&&i.options.getSubcommand()==="configurar"){config.logChannelId=i.channel.id;save();return i.reply(`✅ Este canal agora é o canal de **logs**.`);}
   if(i.commandName==="set"){
    const sub=i.options.getSubcommand();
+   if (sub === "modo-teste") {
+  const acao = i.options.getString("acao");
+
+  config.testMode = acao === "on";
+  save();
+
+  return i.reply(
+    `🧪 **Modo de teste:** ${config.testMode ? "🟢 ATIVADO" : "🔴 DESATIVADO"}`
+  );
+}
    if(sub==="cargo"){const m=await guild.members.fetch(i.options.getUser("usuario").id),r=i.options.getRole("cargo"),a=i.options.getString("acao")||"add";if(r.managed||r.position>=guild.members.me.roles.highest.position)return i.reply({content:"❌ Não consigo gerenciar esse cargo por causa da hierarquia.",ephemeral:true});a==="remove"?await m.roles.remove(r):await m.roles.add(r);await log(guild,"🎭 Cargo alterado",`**Usuário:** ${m.user.tag}\n**Cargo:** ${r.name}\n**Ação:** ${a}\n**Executado por:** ${i.user.tag}`);return i.reply(`✅ Cargo **${r.name}** ${a==="remove"?"removido de":"adicionado a"} ${m}.`);}
    if(sub==="canal-logs"){config.logChannelId=i.options.getChannel("canal").id;save();return i.reply(`✅ Canal de logs definido para ${i.options.getChannel("canal")}.`);}
    if(sub==="canal-reports"){config.reportChannelId=i.options.getChannel("canal").id;save();return i.reply(`✅ Canal que receberá provas de reports definido para ${i.options.getChannel("canal")}.`);}
