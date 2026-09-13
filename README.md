@@ -60,3 +60,7 @@ A lista inicial contém placeholders (`palavrao1`, `palavrao2`, `palavrao3`). Su
 ## Segurança
 
 Nunca coloque o token diretamente no código ou envie o token para outra pessoa. Use somente o `.env` local.
+
+
+## Ecco Visuals
+As respostas administrativas e os logs usam a biblioteca Ecco Visuals via `visuals.bot.js`. O bot referencia os GIFs públicos do repositório Ecco Visuals.

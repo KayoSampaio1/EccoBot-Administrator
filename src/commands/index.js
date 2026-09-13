@@ -14,6 +14,8 @@ module.exports = [
     .setName("ma")
     .setDescription("Ações administrativas Ecco")
     .setDMPermission(false)
+
+    // MUTE
     .addSubcommand(s =>
       userOpt(
         s.setName("mute")
@@ -30,6 +32,8 @@ module.exports = [
             .setDescription("Motivo")
         )
     )
+
+    // LIMITE
     .addSubcommand(s =>
       userOpt(
         s.setName("limite")
@@ -42,6 +46,8 @@ module.exports = [
             .setMinValue(1)
         )
     )
+
+    // DM
     .addSubcommand(s =>
       userOpt(
         s.setName("dm")
@@ -52,8 +58,20 @@ module.exports = [
             .setDescription("Mensagem")
             .setRequired(true)
         )
+    )
+
+    // AVISO
+    .addSubcommand(s =>
+      s.setName("aviso")
+        .setDescription("Publica um aviso formatado")
+        .addStringOption(o =>
+          o.setName("mensagem")
+            .setDescription("Mensagem do aviso")
+            .setRequired(true)
+        )
     ),
 
+  // BAN
   new SlashCommandBuilder()
     .setName("ban")
     .setDescription("Bane um usuário")
@@ -68,6 +86,7 @@ module.exports = [
         .setDescription("Motivo")
     ),
 
+  // KICK
   new SlashCommandBuilder()
     .setName("kick")
     .setDescription("Expulsa um usuário")
@@ -82,6 +101,7 @@ module.exports = [
         .setDescription("Motivo")
     ),
 
+  // MUTE
   new SlashCommandBuilder()
     .setName("mute")
     .setDescription("Aplica mute/timeout")
@@ -103,6 +123,7 @@ module.exports = [
         .setDescription("Motivo")
     ),
 
+  // UNMUTE
   new SlashCommandBuilder()
     .setName("unmute")
     .setDescription("Remove mute")
@@ -113,6 +134,7 @@ module.exports = [
         .setRequired(true)
     ),
 
+  // WARN
   new SlashCommandBuilder()
     .setName("warn")
     .setDescription("Adverte um usuário")
@@ -128,6 +150,7 @@ module.exports = [
         .setRequired(true)
     ),
 
+  // WARNINGS
   new SlashCommandBuilder()
     .setName("warnings")
     .setDescription("Consulta advertências")
@@ -138,6 +161,7 @@ module.exports = [
         .setRequired(true)
     ),
 
+  // CLEAR
   new SlashCommandBuilder()
     .setName("clear")
     .setDescription("Apaga mensagens recentes")
@@ -150,21 +174,25 @@ module.exports = [
         .setMaxValue(100)
     ),
 
+  // REMOVE ALL MSG
   new SlashCommandBuilder()
     .setName("removeallmsg")
     .setDescription("Remove mensagens do canal configurado")
     .setDMPermission(false),
 
+  // LOCK
   new SlashCommandBuilder()
     .setName("lock")
     .setDescription("Bloqueia o canal")
     .setDMPermission(false),
 
+  // UNLOCK
   new SlashCommandBuilder()
     .setName("unlock")
     .setDescription("Desbloqueia o canal")
     .setDMPermission(false),
 
+  // SLOWMODE
   new SlashCommandBuilder()
     .setName("slowmode")
     .setDescription("Define o slowmode")
@@ -177,6 +205,7 @@ module.exports = [
         .setMaxValue(21600)
     ),
 
+  // ANTILINK
   new SlashCommandBuilder()
     .setName("antilink")
     .setDescription("Liga/desliga Anti-link")
@@ -190,6 +219,7 @@ module.exports = [
         .setDescription("Desativa")
     ),
 
+  // ANTISPAM
   new SlashCommandBuilder()
     .setName("antispam")
     .setDescription("Liga/desliga Anti-spam")
@@ -203,6 +233,7 @@ module.exports = [
         .setDescription("Desativa")
     ),
 
+  // AUTOMOD
   new SlashCommandBuilder()
     .setName("automod")
     .setDescription("Liga/desliga AutoMod")
@@ -216,6 +247,7 @@ module.exports = [
         .setDescription("Desativa")
     ),
 
+  // LOGS
   new SlashCommandBuilder()
     .setName("logs")
     .setDescription("Configura logs")
@@ -225,11 +257,13 @@ module.exports = [
         .setDescription("Usa o canal atual como canal de logs")
     ),
 
+  // SET
   new SlashCommandBuilder()
     .setName("set")
     .setDescription("Configurações administrativas")
     .setDMPermission(false)
 
+    // CARGO
     .addSubcommand(s =>
       s.setName("cargo")
         .setDescription("Adiciona/remove cargo")
@@ -253,6 +287,7 @@ module.exports = [
         )
     )
 
+    // CANAL DE LOGS
     .addSubcommand(s =>
       s.setName("canal-logs")
         .setDescription("Define canal de logs")
@@ -264,6 +299,7 @@ module.exports = [
         )
     )
 
+    // CANAL DE REPORTS
     .addSubcommand(s =>
       s.setName("canal-reports")
         .setDescription("Define canal para receber provas de reports")
@@ -275,6 +311,7 @@ module.exports = [
         )
     )
 
+    // CARGO PROTEGIDO
     .addSubcommand(s =>
       s.setName("cargo-protegido")
         .setDescription("Protege/desprotege um cargo")
@@ -293,6 +330,7 @@ module.exports = [
         )
     )
 
+    // WHITELIST CANAL
     .addSubcommand(s =>
       s.setName("whitelist-canal")
         .setDescription("Whitelist de canal")
@@ -312,6 +350,7 @@ module.exports = [
         )
     )
 
+    // WHITELIST CARGO
     .addSubcommand(s =>
       s.setName("whitelist-cargo")
         .setDescription("Whitelist de cargo")
@@ -330,6 +369,7 @@ module.exports = [
         )
     )
 
+    // PALAVRA
     .addSubcommand(s =>
       s.setName("palavra")
         .setDescription("Adiciona/remove palavra filtrada")
@@ -348,7 +388,7 @@ module.exports = [
         )
     )
 
-    // NOVO: MODO DE TESTE
+    // MODO DE TESTE
     .addSubcommand(s =>
       s.setName("modo-teste")
         .setDescription("Ativa/desativa o modo de teste da moderação")
@@ -363,16 +403,19 @@ module.exports = [
         )
     ),
 
+  // PANEL
   new SlashCommandBuilder()
     .setName("panel")
     .setDescription("Abre o painel de configuração Ecco")
     .setDMPermission(false),
 
+  // VERIFC
   new SlashCommandBuilder()
     .setName("verifc")
     .setDescription("Verifica as últimas 100 mensagens novamente")
     .setDMPermission(false),
 
+  // REPORT
   new SlashCommandBuilder()
     .setName("report")
     .setDescription("Denuncia um usuário")

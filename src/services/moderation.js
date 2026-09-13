@@ -1,12 +1,21 @@
 const { EmbedBuilder, PermissionFlagsBits } = require("discord.js");
 const config = require("../config");
 const store = require("./store");
+const visuals = require("../../visuals.bot");
 
 async function log(guild,title,description,extra={}){
   if(!config.logChannelId)return;
   const c=await guild.channels.fetch(config.logChannelId).catch(()=>null);
   if(!c?.isTextBased())return;
   const e=new EmbedBuilder().setTitle(title).setDescription(description).setTimestamp();
+  const image =
+    title.includes("Banimento") ? visuals.admin.ban :
+    title.includes("Expulsão") ? visuals.admin.kick :
+    title.includes("Mute") || title.includes("mute") ? visuals.admin.mute :
+    title.includes("Advertência") || title.includes("advertência") ? visuals.admin.warning :
+    title.includes("Anti-raid") || title.includes("prote") ? visuals.admin.protection :
+    visuals.shield;
+  if(image) e.setImage(image);
   if(extra.color)e.setColor(extra.color);
   if(extra.fields)e.addFields(extra.fields);
   if(extra.footer)e.setFooter({text:extra.footer});
@@ -23,10 +32,16 @@ async function warn(member,message,reason){
   await message.delete().catch(()=>{});
   if(n>=limit){
     await member.timeout(config.muteMinutes*60000,reason).catch(()=>{});
-    await message.channel.send({content:`${member}, você atingiu o limite de advertências **(${n}/${limit})**. Você recebeu **mute de ${config.muteMinutes} minutos**.`}).catch(()=>{});
+    await message.channel.send({
+      content:`${member}, você atingiu o limite de advertências **(${n}/${limit})**. Você recebeu **mute de ${config.muteMinutes} minutos**.`,
+      files:[visuals.admin.mute]
+    }).catch(()=>{});
     await log(member.guild,"🔇 Punição automática",`${member.user.tag} recebeu mute automático.\n**Motivo:** ${reason}\n**Advertências:** ${n}/${limit}`);
   } else {
-    await message.channel.send({content:`${member}, esse tipo de conteúdo não é permitido. Advertência **(${n}/${limit})**. Ao chegar em ${limit}, você receberá **mute de ${config.muteMinutes} minutos**.`}).catch(()=>{});
+    await message.channel.send({
+      content:`${member}, esse tipo de conteúdo não é permitido. Advertência **(${n}/${limit})**. Ao chegar em ${limit}, você receberá **mute de ${config.muteMinutes} minutos**.`,
+      files:[visuals.admin.warning]
+    }).catch(()=>{});
     await log(member.guild,"⚠️ Advertência",`${member.user.tag}\n**Motivo:** ${reason}\n**Advertências:** ${n}/${limit}`);
   }
   return r;
